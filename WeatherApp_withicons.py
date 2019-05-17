@@ -1,4 +1,5 @@
-import tkinter as tk
+# -*- coding: utf-8 -*-
+import Tkinter as tk
 import requests
 from PIL import Image, ImageTk
 
