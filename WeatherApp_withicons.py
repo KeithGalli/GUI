@@ -20,9 +20,9 @@ def format_response(weather_json):
 
 
 def get_weather(city):
-    weather_key = 'edffd1bf975a74d5d10e58c5ac8be2d3'
+    weather_key = read_api_key_from_file('./keyfile')
     url = 'https://api.openweathermap.org/data/2.5/weather'
-    params = {'APPID': 'edffd1bf975a74d5d10e58c5ac8be2d3', 'q': city, 'units':'imperial'}
+    params = {'APPID': weather_key, 'q': city, 'units':'imperial'}
     response = requests.get(url, params=params)
     print(response.json())
     weather_json = response.json()
@@ -38,6 +38,11 @@ def open_image(icon):
     weather_icon.delete("all")
     weather_icon.create_image(0,0, anchor='nw', image=img)
     weather_icon.image = img
+
+def read_api_key_from_file(file):
+    f = open(file, "r")
+    key = f.readline()
+    return key
 
 C = tk.Canvas(app, height=HEIGHT, width=WIDTH)
 background_image= tk.PhotoImage(file='./landscape.png')

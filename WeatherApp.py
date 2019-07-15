@@ -8,7 +8,7 @@ def test_function(entry):
 	print("This is the entry:", entry)
 
 # api.openweathermap.org/data/2.5/forecast?q={city name},{country code}
-# a4aa5e3d83ffefaba8c00284de6ef7c3
+
 
 def format_response(weather):
 	try:
@@ -23,7 +23,7 @@ def format_response(weather):
 	return final_str
 
 def get_weather(city):
-	weather_key = 'a4aa5e3d83ffefaba8c00284de6ef7c3'
+	weather_key = read_api_key_from_file('./keyfile')
 	url = 'https://api.openweathermap.org/data/2.5/weather'
 	params = {'APPID': weather_key, 'q': city, 'units': 'imperial'}
 	response = requests.get(url, params=params)
@@ -31,7 +31,10 @@ def get_weather(city):
 
 	label['text'] = format_response(weather)
 
-
+def read_api_key_from_file(file):
+    f = open(file, "r")
+    key = f.readline()
+    return key
 
 root = tk.Tk()
 
