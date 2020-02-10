@@ -1,6 +1,13 @@
 import tkinter as tk
 import requests
-
+import pyttsx3
+engine= pyttsx3.init()
+voices= engine.getProperty('voices')
+engine.setProperty('voice',voices[1].id)
+def say(word):
+	engine.say(word)
+	engine.runAndWait()
+	
 HEIGHT = 500
 WIDTH = 600
 
@@ -30,6 +37,7 @@ def get_weather(city):
 	weather = response.json()
 
 	label['text'] = format_response(weather)
+	say(label['text'])
 
 
 
@@ -47,6 +55,7 @@ frame.place(relx=0.5, rely=0.1, relwidth=0.75, relheight=0.1, anchor='n')
 
 entry = tk.Entry(frame, font=40)
 entry.place(relwidth=0.65, relheight=1)
+entry.focus()
 
 button = tk.Button(frame, text="Get Weather", font=40, command=lambda: get_weather(entry.get()))
 button.place(relx=0.7, relheight=1, relwidth=0.3)
