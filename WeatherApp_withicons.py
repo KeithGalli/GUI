@@ -1,6 +1,14 @@
 import tkinter as tk
 import requests
 from PIL import Image, ImageTk
+import pyttsx3
+engine= pyttsx3.init()
+voices= engine.getProperty('voices')
+engine.setProperty('voice',voices[1].id)
+
+def say(word):
+    engine.say(word)
+    engine.runAndWait()
 
 app = tk.Tk()
 
@@ -52,6 +60,7 @@ frame.place(relx=0.5, rely=0.1, relwidth=0.75, relheight=0.1, anchor='n')
 
 textbox = tk.Entry(frame, font=40)
 textbox.place(relwidth=0.65, relheight=1)
+textbox.focus()
 
 submit = tk.Button(frame, text='Get Weather', font=40, command=lambda: get_weather(textbox.get()))
 #submit.config(font=)
