@@ -40,7 +40,7 @@ def open_image(icon):
     weather_icon.image = img
 
 C = tk.Canvas(app, height=HEIGHT, width=WIDTH)
-background_image= tk.PhotoImage(file='./landscape.png')
+background_image= tk.PhotoImage(file='./landscape.png',master=app)
 background_label = tk.Label(app, image=background_image)
 background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
